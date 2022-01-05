@@ -1,6 +1,6 @@
 {
   "name": "@tkzo/js-date-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Implementation example for Date Picker in JavaScript.",
   "main": "date-picker.js",
   "repository": {
