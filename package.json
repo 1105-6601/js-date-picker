@@ -1,0 +1,32 @@
+{
+  "name": "@tkzo/js-date-picker",
+  "version": "1.0.3",
+  "description": "Implementation example for Date Picker in JavaScript.",
+  "main": "date-picker.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1105-6601/js-date-picker.git"
+  },
+  "keywords": [
+    "datepicker"
+  ],
+  "author": "Tkzo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1105-6601/js-date-picker/issues"
+  },
+  "homepage": "https://github.com/1105-6601/js-date-picker#readme",
+  "type": "module",
+  "types": "date-picker.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.6"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage"
+  }
+}

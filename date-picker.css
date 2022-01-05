@@ -1,0 +1,278 @@
+/* Reset style */
+.ts-calendar-container div,
+.ts-calendar-container span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+/* General style */
+.ts-calendar-container {
+    transform: scale(0.7);
+    transform-origin: top left;
+    position: absolute;
+    transition-duration: .5s;
+    opacity: 1;
+}
+
+.ts-calendar-container * {
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+.ts-calendar-container.ts-hidden {
+    opacity: 0;
+}
+
+.ts-calendar-container.ts-hidden.ts-animated {
+    display: none;
+}
+
+.ts-calendar-container .ts-calendar {
+    display: flex;
+    flex-direction: column;
+    width: 338px; /* 320 + 1 + 8 + 8 + 1 */
+    height: 338px; /* 320 + 1 + 8 + 8 + 1 */
+    border-radius: 5px;
+}
+
+.ts-calendar-container .ts-view-main,
+.ts-calendar-container .ts-view-years,
+.ts-calendar-container .ts-view-months {
+    display: block;
+}
+
+.ts-calendar-container .ts-view-main.ts-hidden,
+.ts-calendar-container .ts-view-years.ts-hidden,
+.ts-calendar-container .ts-view-months.ts-hidden {
+    display: none;
+}
+
+.ts-calendar-container .ts-calendar-header {
+    background: mediumseagreen;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.ts-calendar-container .ts-header-prev,
+.ts-calendar-container .ts-header-next {
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ts-calendar-container .ts-header-year-month {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ts-calendar-container button.ts-prev,
+.ts-calendar-container button.ts-next {
+    border: none;
+    background: whitesmoke;
+    color: dimgray;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ts-calendar-container .ts-header-text {
+    font-size: 22px;
+    color: whitesmoke;
+}
+
+.ts-calendar-container .ts-header-year {
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+.ts-calendar-container .ts-header-month {
+    padding: 0 4px 0 16px;
+    cursor: pointer;
+}
+
+.ts-calendar-container .ts-header-year .ts-text,
+.ts-calendar-container .ts-header-month .ts-text {
+    border-radius: 5px;
+    padding: 0 4px;
+}
+
+.ts-calendar-container .ts-header-year .ts-text:hover,
+.ts-calendar-container .ts-header-month .ts-text:hover {
+    /* Base color: lightgreen */
+    background: rgba(144, 238, 144, 0.3);
+}
+
+.ts-calendar-container .ts-header-year-month small {
+    font-size: 14px;
+    color: whitesmoke;
+}
+
+.ts-calendar-container .ts-header-years-range,
+.ts-calendar-container .ts-header-selected-year {
+    font-size: 20px;
+    display: flex;
+}
+
+.ts-calendar-container .ts-calendar-body {
+    height: 298px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid lightgray;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 8px;
+    background: white;
+}
+
+.ts-calendar-container .ts-body-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightslategray;
+}
+
+.ts-calendar-container .ts-body-cell.ts-active {
+    background: mediumseagreen;
+    color: whitesmoke !important;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-date {
+    cursor: pointer;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-date.ts-not-this-month {
+    opacity: 0.25;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-date:not(.ts-active):hover {
+    background: whitesmoke;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-week-number {
+    color: mediumseagreen;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-sat {
+    color: cornflowerblue;
+}
+
+.ts-calendar-container .ts-view-main .ts-body-cell.ts-sun {
+    color: lightpink;
+}
+
+.ts-calendar-container [class*="ts-delay-"] {
+    transition-duration: 0.4s;
+    animation-duration: 0.4s;
+    animation-name: zoomAndFadeIn;
+    animation-timing-function: ease-out;
+}
+
+:root {
+    --delay-tick-duration: 0.01s;
+}
+
+.ts-calendar-container .ts-body-cell.ts-delay-0  { transition-delay: calc(var(--delay-tick-duration) * 0);  animation-delay: calc(var(--delay-tick-duration) * 0);  }
+.ts-calendar-container .ts-body-cell.ts-delay-1  { transition-delay: calc(var(--delay-tick-duration) * 1);  animation-delay: calc(var(--delay-tick-duration) * 1);  }
+.ts-calendar-container .ts-body-cell.ts-delay-2  { transition-delay: calc(var(--delay-tick-duration) * 2);  animation-delay: calc(var(--delay-tick-duration) * 2);  }
+.ts-calendar-container .ts-body-cell.ts-delay-3  { transition-delay: calc(var(--delay-tick-duration) * 3);  animation-delay: calc(var(--delay-tick-duration) * 3);  }
+.ts-calendar-container .ts-body-cell.ts-delay-4  { transition-delay: calc(var(--delay-tick-duration) * 4);  animation-delay: calc(var(--delay-tick-duration) * 4);  }
+.ts-calendar-container .ts-body-cell.ts-delay-5  { transition-delay: calc(var(--delay-tick-duration) * 5);  animation-delay: calc(var(--delay-tick-duration) * 5);  }
+.ts-calendar-container .ts-body-cell.ts-delay-6  { transition-delay: calc(var(--delay-tick-duration) * 6);  animation-delay: calc(var(--delay-tick-duration) * 6);  }
+.ts-calendar-container .ts-body-cell.ts-delay-7  { transition-delay: calc(var(--delay-tick-duration) * 7);  animation-delay: calc(var(--delay-tick-duration) * 7);  }
+.ts-calendar-container .ts-body-cell.ts-delay-8  { transition-delay: calc(var(--delay-tick-duration) * 8);  animation-delay: calc(var(--delay-tick-duration) * 8);  }
+.ts-calendar-container .ts-body-cell.ts-delay-9  { transition-delay: calc(var(--delay-tick-duration) * 9);  animation-delay: calc(var(--delay-tick-duration) * 9);  }
+.ts-calendar-container .ts-body-cell.ts-delay-10 { transition-delay: calc(var(--delay-tick-duration) * 10); animation-delay: calc(var(--delay-tick-duration) * 10); }
+.ts-calendar-container .ts-body-cell.ts-delay-11 { transition-delay: calc(var(--delay-tick-duration) * 11); animation-delay: calc(var(--delay-tick-duration) * 11); }
+.ts-calendar-container .ts-body-cell.ts-delay-12 { transition-delay: calc(var(--delay-tick-duration) * 12); animation-delay: calc(var(--delay-tick-duration) * 12); }
+.ts-calendar-container .ts-body-cell.ts-delay-13 { transition-delay: calc(var(--delay-tick-duration) * 13); animation-delay: calc(var(--delay-tick-duration) * 13); }
+.ts-calendar-container .ts-body-cell.ts-delay-14 { transition-delay: calc(var(--delay-tick-duration) * 14); animation-delay: calc(var(--delay-tick-duration) * 14); }
+.ts-calendar-container .ts-body-cell.ts-delay-15 { transition-delay: calc(var(--delay-tick-duration) * 15); animation-delay: calc(var(--delay-tick-duration) * 15); }
+.ts-calendar-container .ts-body-cell.ts-delay-16 { transition-delay: calc(var(--delay-tick-duration) * 16); animation-delay: calc(var(--delay-tick-duration) * 16); }
+.ts-calendar-container .ts-body-cell.ts-delay-17 { transition-delay: calc(var(--delay-tick-duration) * 17); animation-delay: calc(var(--delay-tick-duration) * 17); }
+.ts-calendar-container .ts-body-cell.ts-delay-18 { transition-delay: calc(var(--delay-tick-duration) * 18); animation-delay: calc(var(--delay-tick-duration) * 18); }
+.ts-calendar-container .ts-body-cell.ts-delay-19 { transition-delay: calc(var(--delay-tick-duration) * 19); animation-delay: calc(var(--delay-tick-duration) * 19); }
+.ts-calendar-container .ts-body-cell.ts-delay-20 { transition-delay: calc(var(--delay-tick-duration) * 20); animation-delay: calc(var(--delay-tick-duration) * 20); }
+.ts-calendar-container .ts-body-cell.ts-delay-21 { transition-delay: calc(var(--delay-tick-duration) * 21); animation-delay: calc(var(--delay-tick-duration) * 21); }
+.ts-calendar-container .ts-body-cell.ts-delay-22 { transition-delay: calc(var(--delay-tick-duration) * 22); animation-delay: calc(var(--delay-tick-duration) * 22); }
+.ts-calendar-container .ts-body-cell.ts-delay-23 { transition-delay: calc(var(--delay-tick-duration) * 23); animation-delay: calc(var(--delay-tick-duration) * 23); }
+.ts-calendar-container .ts-body-cell.ts-delay-24 { transition-delay: calc(var(--delay-tick-duration) * 24); animation-delay: calc(var(--delay-tick-duration) * 24); }
+.ts-calendar-container .ts-body-cell.ts-delay-25 { transition-delay: calc(var(--delay-tick-duration) * 25); animation-delay: calc(var(--delay-tick-duration) * 25); }
+.ts-calendar-container .ts-body-cell.ts-delay-26 { transition-delay: calc(var(--delay-tick-duration) * 26); animation-delay: calc(var(--delay-tick-duration) * 26); }
+.ts-calendar-container .ts-body-cell.ts-delay-27 { transition-delay: calc(var(--delay-tick-duration) * 27); animation-delay: calc(var(--delay-tick-duration) * 27); }
+.ts-calendar-container .ts-body-cell.ts-delay-28 { transition-delay: calc(var(--delay-tick-duration) * 28); animation-delay: calc(var(--delay-tick-duration) * 28); }
+.ts-calendar-container .ts-body-cell.ts-delay-29 { transition-delay: calc(var(--delay-tick-duration) * 29); animation-delay: calc(var(--delay-tick-duration) * 29); }
+.ts-calendar-container .ts-body-cell.ts-delay-30 { transition-delay: calc(var(--delay-tick-duration) * 30); animation-delay: calc(var(--delay-tick-duration) * 30); }
+.ts-calendar-container .ts-body-cell.ts-delay-31 { transition-delay: calc(var(--delay-tick-duration) * 31); animation-delay: calc(var(--delay-tick-duration) * 31); }
+.ts-calendar-container .ts-body-cell.ts-delay-32 { transition-delay: calc(var(--delay-tick-duration) * 32); animation-delay: calc(var(--delay-tick-duration) * 32); }
+.ts-calendar-container .ts-body-cell.ts-delay-33 { transition-delay: calc(var(--delay-tick-duration) * 33); animation-delay: calc(var(--delay-tick-duration) * 33); }
+.ts-calendar-container .ts-body-cell.ts-delay-34 { transition-delay: calc(var(--delay-tick-duration) * 34); animation-delay: calc(var(--delay-tick-duration) * 34); }
+.ts-calendar-container .ts-body-cell.ts-delay-35 { transition-delay: calc(var(--delay-tick-duration) * 35); animation-delay: calc(var(--delay-tick-duration) * 35); }
+.ts-calendar-container .ts-body-cell.ts-delay-36 { transition-delay: calc(var(--delay-tick-duration) * 36); animation-delay: calc(var(--delay-tick-duration) * 36); }
+.ts-calendar-container .ts-body-cell.ts-delay-37 { transition-delay: calc(var(--delay-tick-duration) * 37); animation-delay: calc(var(--delay-tick-duration) * 37); }
+.ts-calendar-container .ts-body-cell.ts-delay-38 { transition-delay: calc(var(--delay-tick-duration) * 38); animation-delay: calc(var(--delay-tick-duration) * 38); }
+.ts-calendar-container .ts-body-cell.ts-delay-39 { transition-delay: calc(var(--delay-tick-duration) * 39); animation-delay: calc(var(--delay-tick-duration) * 39); }
+.ts-calendar-container .ts-body-cell.ts-delay-40 { transition-delay: calc(var(--delay-tick-duration) * 40); animation-delay: calc(var(--delay-tick-duration) * 40); }
+.ts-calendar-container .ts-body-cell.ts-delay-41 { transition-delay: calc(var(--delay-tick-duration) * 41); animation-delay: calc(var(--delay-tick-duration) * 41); }
+
+.ts-calendar-container .ts-body-cell.ts-hidden {
+    opacity: 0 !important;
+}
+
+@keyframes zoomAndFadeIn {
+    0% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.ts-calendar-container .ts-view-years .ts-calendar-body,
+.ts-calendar-container .ts-view-months .ts-calendar-body {
+    align-items: center;
+}
+
+.ts-calendar-container .ts-view-years .ts-body-cell:not(.ts-active):hover,
+.ts-calendar-container .ts-view-months .ts-body-cell:not(.ts-active):hover {
+    background: whitesmoke;
+}
+
+.ts-calendar-container .ts-view-years .ts-body-cell {
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ts-calendar-container .ts-view-months .ts-body-cell {
+    width: 80px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+}

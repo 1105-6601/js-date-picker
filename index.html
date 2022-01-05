@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>DatePicker Demo</title>
+  <link rel="stylesheet" href="./date-picker.css">
+  <style>
+      /* General styling */
+      h1 {
+          font-size: 18px;
+      }
+
+      /* Input styling */
+      input {
+          border: 1px solid lightgray;
+          border-radius: 3px;
+          padding: 4px 8px;
+          font-size: 12px;
+          color: darkgray;
+          outline: none;
+          cursor: pointer;
+      }
+
+      input:focus {
+          border: 1px solid darkgray;
+      }
+
+      input::placeholder {
+          color: darkgray;
+      }
+  </style>
+</head>
+<body>
+
+<h1>Implementation example for Date Picker</h1>
+<input type="text" name="date" placeholder="Click to select date." readonly>
+
+<script type="module">
+  // Import module.
+  import { DatePicker } from './date-picker.js';
+
+  (() => {
+    // Initialize datepicker.
+    const picker = new DatePicker('[name="date"]');
+    // Can set default date.
+    const defaultDate = new Date(2022, 3, 15);
+    // If you don't want to apply it in the input element, set false in the second argument.
+    picker.setDate(defaultDate, false);
+    // Can get current set date.
+    const currentDate = picker.getDate();
+  })();
+</script>
+</body>
+</html>
